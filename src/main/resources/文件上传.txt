@@ -1,0 +1,35 @@
+springmvc 文件上传
+
+第一种方式 利用 commons-fileupload 来上传文件
+    1.导入jar包
+    2.配置springmvc文件
+        <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+            <property name="defaultEncoding" value="UTF-8"/>
+            <property name="maxUploadSize" value="10485760000"/>
+            <property name="maxInMemorySize" value="40960"/>
+        </bean>
+    3.jsp页面
+        <p>文件上传</p>
+        <form action="upload.action" method="POST" enctype="multipart/form-data">
+            上传文件:<input type="file" name="file" />
+            <input type="submit" value="上传">
+        </form>
+    4.Controller配置
+        @RequestMapping("/upload")
+        public String fileUpload(@RequestParam("file") CommonsMultipartFile file, HttpServletRequest req)
+                throws IOException {
+            // 获取文件名
+            String fileName = file.getOriginalFilename();
+            String path = req.getSession().getServletContext().getRealPath("/fileupload");
+            InputStream is = file.getInputStream();
+            OutputStream os = new FileOutputStream(new File(path, fileName));
+            int len = 0;
+            byte[] buffer = new byte[1024];
+            while ((len = is.read(buffer)) != -1) {
+                os.write(buffer, 0, len);
+            }
+            os.close();
+            is.close();
+            return "data";
+        }
+    注：批量上传 controller参数用数组

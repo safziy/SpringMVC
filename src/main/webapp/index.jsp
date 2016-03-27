@@ -1,9 +1,18 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script type="text/javascript" src="/js/jquery-1.12.2.min.js" ></script>
+<script type="text/javascript">
+	$(function(){
+		$("#ajaxBtn").click(function(){
+			$.post("ajax.action",{'name':$("#ajaxName").val()},function(data){
+				alert(data);
+			});
+		});
+	});
+</script>
 <title>Spring MVC</title>
 </head>
 <body>
@@ -30,6 +39,33 @@
 	<a href="param/hello.action">带参数1</a><br/>
 	<a href="param.action?method=add">带参数2</a><br/>
 	<a href="param.action?method=update">指定方法类型(GET|POST)</a><br/>
+	
+	<p>文件上传</p>
+	<fieldset>
+		<legend>文件上传</legend>
+		<form action="upload.action" method="POST" enctype="multipart/form-data">
+			上传文件:<input type="file" name="file" /> <br/>
+			<input type="submit" value="上传">
+		</form>
+	</fieldset>
+	<fieldset>
+		<legend>批量文件上传</legend>
+		<form action="batchUpload.action" method="POST" enctype="multipart/form-data">
+			上传文件:<input type="file" name="file" /> <br/>
+			上传文件:<input type="file" name="file" /> <br/>
+			<input type="submit" value="上传">
+		</form>
+	</fieldset>
+	
+	<p>Ajax</p>
+	<form action="" method="POST">
+		<input type="text" id="ajaxName" /> <br/>
+		<input type="button" id="ajaxBtn" value="确定">
+	</form>
+	
+
+
+
 	
 </body>
 </html>
