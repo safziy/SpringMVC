@@ -28,6 +28,7 @@
 	<!-- 配置工厂 -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation" value="classpath:mybatis.cfg.xml"></property>
 	</bean>
 	<!-- 配置声明式事务 -->
 	<!-- 事务管理器 -->
@@ -47,5 +48,5 @@
 	</aop:config>
 
 	<context:component-scan base-package="com.safziy"></context:component-scan>
-	
+
 </beans>
