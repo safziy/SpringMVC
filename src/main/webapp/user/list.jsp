@@ -17,7 +17,7 @@
 				<td>Pwd</td>
 			</tr>
 			<tbody id="userDatas">
-				<c:forEach items="${userList }" var="user">
+				<c:forEach items="${userList }" var="user" >
 					<tr>
 						<td>${user.id }</td>
 						<td>${user.name }</td>

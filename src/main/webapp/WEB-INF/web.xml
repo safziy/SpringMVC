@@ -9,6 +9,15 @@
 		<welcome-file>index.html</welcome-file>
 	</welcome-file-list>
 	
+	<!-- 整合Spring -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:applicationContext.xml</param-value>
+	</context-param>
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	
 	<!-- 配置一个过滤器 来处理乱码  这个地方貌似只会解决POST方式的-->
 	<filter>
 		<filter-name>UTF8EncodingFilter</filter-name>
