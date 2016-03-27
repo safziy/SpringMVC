@@ -6,7 +6,7 @@
 <title>Spring MVC</title>
 </head>
 <body>
-	${data }
+	${data }<br/>
 	data
 </body>
 </html>
