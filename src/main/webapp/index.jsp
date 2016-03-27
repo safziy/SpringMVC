@@ -6,9 +6,18 @@
 <script type="text/javascript" src="/js/jquery-1.12.2.min.js" ></script>
 <script type="text/javascript">
 	$(function(){
-		$("#ajaxBtn").click(function(){
+		$("#ajaxSubmit").click(function(){
 			$.post("ajax.action",{'name':$("#ajaxName").val()},function(data){
 				alert(data);
+			});
+		});
+		$("#ajaxGetJson").click(function(){
+			$.post("json.action",function(data){
+				var html="";
+				for (var i = 0; i < data.length; i++) {
+					html += "<tr><td>"+data[i].id+"</td><td>"+data[i].name+"</td><td>"+data[i].pwd+"</td></tr>";
+				}
+				$("#userDatas").html(html);
 			});
 		});
 	});
@@ -58,10 +67,27 @@
 	</fieldset>
 	
 	<p>Ajax</p>
-	<form action="" method="POST">
+	<fieldset>
+		<legend>ajax提交</legend>
 		<input type="text" id="ajaxName" /> <br/>
-		<input type="button" id="ajaxBtn" value="确定">
-	</form>
+		<input type="button" id="ajaxSubmit" value="提交">
+	</fieldset>
+	<fieldset>
+		<legend>Ajax获取json格式数据</legend>
+		<input type="button" id="ajaxGetJson" value="Ajax获取Json">
+		<table width="80%" align="center">
+			<tr>
+				<td>Id</td>
+				<td>Name</td>
+				<td>Pwd</td>
+			</tr>
+			<tbody id="userDatas"></tbody>
+		</table>
+	</fieldset>
+	
+	<p>登陆示例</p>
+	<a href="/user/login.jsp">登陆页</a><br/>
+	<a href="/user/register.jsp">注册页</a><br/>
 	
 
 

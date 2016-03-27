@@ -1,0 +1,76 @@
+Spring MVC中的Ajax/JSon处理
+
+1 使用HttpServletResponse来处理Ajax-不需要配置解析器
+    @RequestMapping("/ajax")
+    public void ajax(String name,HttpServletResponse resp) throws IOException {
+        String msg = "receive name : " + name;
+        resp.getWriter().println(msg);
+    }
+
+2 Spring MVC 处理Json数据
+    a) 导入jar包 jackson-databind.jar(jackson-core.jar,jackson-annotation.jar)
+    b) 配置Json转换器
+        3.1之前的配置
+            <!-- 用于将对象转换成 Json -->
+            <bean id="stringConverter" class="org.springframework.http.converter.StringHttpMessageConverter">
+                <property name="supportedMediaTypes">
+                    <list>
+                        <value>text/plain;charset=UTF-8</value>
+                    </list>
+                </property>
+            </bean>
+            <bean id="jsonConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" />
+            <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+                <property name="messageConverters">
+                    <list>
+                        <ref bean="stringConverter"/>
+                        <ref bean="jsonConverter"/>
+                    </list>
+                </property>
+            </bean>
+        3.1之后的配置 返回的是Json对象
+            <bean id="stringConverter" class="org.springframework.http.converter.StringHttpMessageConverter">
+                <property name="supportedMediaTypes">
+                    <list>
+                        <value>text/plain;charset=UTF-8</value>
+                    </list>
+                </property>
+            </bean>
+            <bean id="jsonConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" />
+            <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping" />
+            <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+                <property name="messageConverters">
+                    <list>
+                        <ref bean="stringConverter" />
+                        <ref bean="jsonConverter" />
+                    </list>
+                </property>
+            </bean>
+        3.1之后的配置 返回的是Json字符串
+            <bean id="jsonConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" >
+                <property name="supportedMediaTypes">  
+                    <list>  
+                        <value>text/html;charset=UTF-8</value>  
+                        <value>application/json;charset=UTF-8</value>  
+                    </list>  
+                </property>
+            </bean>
+            <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping" />
+            <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+                <property name="messageConverters">
+                    <list>
+                        <ref bean="stringConverter"/>
+                        <ref bean="jsonConverter"/>
+                    </list>
+                </property>
+            </bean> 
+    c)代码中直接返回对象就可以 并且用@ResponseBody修饰方法
+        @RequestMapping("/json")
+        @ResponseBody
+        public List<User> json() {
+            List<User> list = new ArrayList<User>();
+            list.add(new User(1, "张三", "123456"));
+            list.add(new User(2, "李四", "234567"));
+            list.add(new User(3, "王五", "345678"));
+            return list;
+        }
