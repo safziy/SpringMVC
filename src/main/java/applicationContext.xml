@@ -13,7 +13,7 @@
         http://www.springframework.org/schema/tx/spring-tx.xsd">
 
 	<!-- 加载属性文件 -->
-	<bean class="org.springframework.beans.factory.config.PlaceholderConfigurerSupport">
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="location" value="classpath:db.properties" />
 	</bean>
 
