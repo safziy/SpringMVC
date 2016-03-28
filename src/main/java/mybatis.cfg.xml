@@ -6,5 +6,6 @@
 	</typeAliases>
 	<mappers>
 		<!-- 所有mapper文件 -->
+		<mapper resource="com/safziy/vo/user.mapper.xml" />
 	</mappers>
 </configuration>

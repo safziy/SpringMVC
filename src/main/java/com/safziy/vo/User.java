@@ -1,11 +1,10 @@
 package com.safziy.vo;
 
-
 public class User {
 	private int id;
 	private String name;
 	private String pwd;
-	
+
 	public User() {
 	}
 

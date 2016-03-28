@@ -11,7 +11,7 @@
 	<fieldset>
 		<legend>登陆</legend>
 		<form action="/user/login.action" method="POST">
-			<c:if test="${errMsg != null}">
+			<c:if test="${errMsg != null}" >
 				<span>${errMsg }</span><br/>
 			</c:if>
 			<input type="text" name="name" /><br/>
