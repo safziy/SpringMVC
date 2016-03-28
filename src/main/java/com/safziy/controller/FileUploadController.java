@@ -1,4 +1,4 @@
-package com.safziy.springmvc;
+package com.safziy.controller;
 
 import java.io.File;
 import java.io.FileOutputStream;

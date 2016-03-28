@@ -1,4 +1,4 @@
-package com.safziy.springmvc;
+package com.safziy.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

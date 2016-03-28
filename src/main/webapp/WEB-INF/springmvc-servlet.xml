@@ -19,6 +19,6 @@
 	</bean>
 	
 	<!-- 配置请求和处理器 -->
-	<bean name="/hello.do" class="com.safziy.springmvc.HelloController"/>
+	<bean name="/hello.do" class="com.safziy.controller.HelloController"/>
 
 </beans>

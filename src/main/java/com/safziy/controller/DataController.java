@@ -1,4 +1,4 @@
-package com.safziy.springmvc;
+package com.safziy.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
