@@ -18,7 +18,7 @@ public class UserDaoImpl extends SqlSessionDaoSupport implements UserDao {
 	public void setSqlSessionFactory(SqlSessionFactory sqlSessionFactory) {
 		super.setSqlSessionFactory(sqlSessionFactory);
 	}
-	
+
 	@Override
 	public List<User> list() {
 		return getSqlSession().selectList("com.safziy.vo.user.mapper.list");
